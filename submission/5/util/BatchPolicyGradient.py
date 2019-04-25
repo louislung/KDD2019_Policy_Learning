@@ -128,7 +128,7 @@ class BatchPolicyGradient:
             raise Exception('output csv {} already exists'.format(filename))
 
         self.find_best_x()
-        rewards = self.environment.evaluateReward(np.array([self.best_x] * _trial))
+        rewards = self.environment.evaluateReward(np.array([self.best_x] * _trial), skip_cache=True)
         rewards = rewards[rewards[:, 0] != 'nan'][:, 0].astype(float)
 
         logger.info('best x = {}'.format(self.best_x))
